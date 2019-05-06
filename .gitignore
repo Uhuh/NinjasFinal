@@ -1,0 +1,5 @@
+*.txt
+*.o
+Doxy
+html/
+latex/
