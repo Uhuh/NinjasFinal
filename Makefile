@@ -4,7 +4,7 @@
 # Course: CS 5201 - Ninja's
 
 CXX = /usr/bin/g++
-CXXFLAGS = -g -Wpedantic -Wall -Wextra -Wfloat-conversion -Werror --std=c++17
+CXXFLAGS = -g -Wpedantic -Wall -Wextra -Wfloat-conversion -Werror --std=c++17 -O3
 
 OBJECTS = ./main.o
 .SUFFIXES: .cpp

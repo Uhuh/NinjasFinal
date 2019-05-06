@@ -16,10 +16,8 @@ double xL(double x) { return sin(x);}
 double yU(double y) { return 0*y;}
 double yL(double y) { return sin(y);}
 
-int main()
+int main(int argc, char** argv)
 {
-  std::cout << "[STARTING]" << std::endl;
-  auto start = high_resolution_clock::now();
   std::cout << std::setprecision(2) << std::fixed;
   PartialDiff<double> PDE(0, M_PI);
   FunctPtr xUp = xU;
@@ -27,10 +25,12 @@ int main()
   FunctPtr yUp = yU;
   FunctPtr yLow = yL;
 
-  PDE(xUp, xLow, yUp, yLow, 60);
+  if(argc < 2)
+  {
+    return 1;
+  }
 
-  auto end = high_resolution_clock::now();
-  auto duration = duration_cast<seconds>(end - start);
-  std::cout << "[ENDING]: " << duration.count() << std::endl;
+  PDE(xUp, xLow, yUp, yLow, std::stoi(argv[1]));
 
+  return 0;
 }

@@ -40,7 +40,7 @@ vector<T> PartialDiff<T>::operator()(FunctPtr xUpper, FunctPtr xLower,
   // All the x and y shifted points. "Main" is just u(xj, yk)
   vector<Point> notMain(4);
   
-  const double FRACT = static_cast<double>(abs(upperBound - lowerBound)) / partitions;
+  const double FRACT = static_cast<double>(upperBound - lowerBound) / partitions;
 
   // Make vector X
   int index = 0;
