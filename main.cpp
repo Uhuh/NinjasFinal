@@ -5,24 +5,32 @@
 */
 #include "partial.h"
 #include <iostream>
+#include <chrono> 
 #include <iomanip>
 #include <cmath>
 
-#define PI 3.141592653
+using namespace std::chrono;
 
-double xU(double x) { return 0; }
+double xU(double x) { return 0*x; }
 double xL(double x) { return sin(x);}
-double yU(double y) { return 0;}
+double yU(double y) { return 0*y;}
 double yL(double y) { return sin(y);}
-
 
 int main()
 {
-  std::cout << std::setprecision(8) << std::fixed;
-  PartialDiff solve(0, PI);
+  std::cout << "[STARTING]" << std::endl;
+  auto start = high_resolution_clock::now();
+  std::cout << std::setprecision(2) << std::fixed;
+  PartialDiff<double> PDE(0, M_PI);
   FunctPtr xUp = xU;
   FunctPtr xLow = xL;
   FunctPtr yUp = yU;
   FunctPtr yLow = yL;
-  solve.solver(xUp, xLow, yUp, yLow, 10);
+
+  PDE(xUp, xLow, yUp, yLow, 60);
+
+  auto end = high_resolution_clock::now();
+  auto duration = duration_cast<seconds>(end - start);
+  std::cout << "[ENDING]: " << duration.count() << std::endl;
+
 }

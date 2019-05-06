@@ -2,10 +2,10 @@
 #include <iostream>
 #include "partial.h"
 #include "dense.h"
-#include "vector.h"
 #include "solver.h"
 
-PartialDiff::PartialDiff(const double lower, const double upper)
+template <typename T>
+PartialDiff<T>::PartialDiff(const T lower, const T upper)
 {
   if(upper < lower)
   {
@@ -16,9 +16,10 @@ PartialDiff::PartialDiff(const double lower, const double upper)
   lowerBound = lower;
 }
 
-void PartialDiff::solver(FunctPtr xUpper, FunctPtr xLower, 
+template <typename T>
+vector<T> PartialDiff<T>::operator()(FunctPtr xUpper, FunctPtr xLower, 
                     FunctPtr yUpper, FunctPtr yLower, 
-                    const int partitions) const
+                    const int partitions)
 {
   if(xUpper == NULL || xLower == NULL || yUpper == NULL || yLower == NULL)
   {
@@ -82,7 +83,7 @@ void PartialDiff::solver(FunctPtr xUpper, FunctPtr xLower,
         {
           if(notMain[i] == XVec[j])
           {
-            AMatrix[j][row] = (-1.) / partitions;
+            AMatrix[j][row] = -0.25;
             break;
           }
           else if(notMain[i].m_x == lowerBound)
@@ -115,7 +116,6 @@ void PartialDiff::solver(FunctPtr xUpper, FunctPtr xLower,
   BVec = BVec * 0.25;
 
   GaussianSolver<double> solver;
-  std::cout << XVec << std::endl;
-  std::cout << solver(AMatrix.toSym(), BVec) << std::endl;
 
+  return solver(AMatrix.toSym(), BVec);
 }

@@ -3,19 +3,21 @@
 
 #include <iostream>
 #include <cstddef>
+#include "vector.h"
 
 using FunctPtr = double(*)(double);
 
+template <class T>
 class PartialDiff
 {
   private:
-    double upperBound;
-    double lowerBound;
+    T upperBound;
+    T lowerBound;
   public:
-    PartialDiff(const double lower, const double upper);
-    void solver(FunctPtr UpperBound = NULL, FunctPtr LowerBound = NULL, 
+    PartialDiff(const T lower, const T upper);
+    vector<T> operator()(FunctPtr UpperBound = NULL, FunctPtr LowerBound = NULL, 
           FunctPtr LeftBound = NULL, FunctPtr RightBound = NULL, 
-          const int partitions = 0) const;
+          const int partitions = 0);
 
 };
 
@@ -37,5 +39,7 @@ struct Point
   double m_x;
   double m_y;
 };
+
+#include "partial.hpp"
 
 #endif
