@@ -13,15 +13,17 @@
 
 using namespace std::chrono;
 
-double xU(double x) { return x*0.0; }
-double xL(double x) { return sin(x); }
-double yU(double y) { return y*0.0; }
-double yL(double y) { return sin(y); }
+double xU(double y) { return y*0.0; }
+double xL(double y) { return sin(y); }
+double yU(double x) { return x*0.0; }
+double yL(double x) { return sin(x); }
 
 int main(int argc, char** argv)
 {
+  double lowerb = 0;
+  double upperb = M_PI;
   std::cout << std::setprecision(2) << std::fixed;
-  PartialDiff<double> PDE(0, M_PI);
+  PartialDiff<double> PDE(lowerb, upperb);
   FunctPtr xUp = xU;
   FunctPtr xLow = xL;
   FunctPtr yUp = yU;
@@ -41,11 +43,11 @@ int main(int argc, char** argv)
   {
     for(int x = 0; x < size+1; x++)
     {
-      if(y == 0 && x != size) out << sin(M_PI/(size)*x) << " ";
-      else if(y == 0 && x == size) out << sin(M_PI/(size)*x);
-      else if(x == 0) out << sin(M_PI/(size)*y) << " ";
-      else if(x == size) out << 0.0;
-      else if(y == size) out << 0.0 << " ";
+      if(y == 0 && x != size) out << xL(upperb/(size)*x) << " ";
+      else if(y == 0 && x == size) out << xL(upperb/(size)*x);
+      else if(x == 0) out << xL(upperb/(size)*y) << " ";
+      else if(x == size) out << xU(lowerb/(size)*y);
+      else if(y == size) out << yU(lowerb/(size)*x) << " ";
       else out << v[(y-1)*(size-1)+(x-1)] << " ";
     }
     out << std::endl;
