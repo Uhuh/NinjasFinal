@@ -23,7 +23,15 @@ clean:
 	-@rm -f driver > /dev/null 2>&1
 	-@rm -f ${OBJECTS} > /dev/null 2>&1
 	-@rm -rf html/ latex/ > /dev/null 2>&1
+	-@rm -f output.txt > /dev/null 2>&1
+	-@rm -rf data/lu_plot.png > /dev/null 2>&1
 
 main.o: ./vector.h ./vector.hpp ./matrix.h  \
 				./solver.h ./solver.hpp ./main.cpp ./upper.hpp \
 				./upper.h ./lower.h ./lower.hpp
+
+plot: driver
+	-@python3 plotter.py $(size)
+
+time: driver
+	-@python3 time_it.py

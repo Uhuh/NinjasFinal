@@ -1,13 +1,13 @@
 import time
-import subprocess as sp 
-import os 
+import subprocess as sp
+import os
 import csv
 import pandas as pd
 import matplotlib.pyplot as plt
 
 times1=[]
 times2=[]
-sizes=[5,10,15,20,25,30,35,40]#,45]#,50,55,60,65,70,75,80,85,90,95,100]
+sizes=[5,10,15,20,25,30,35,40,45,50]#,55,60,65,70,75,80,85,90,95,100]
 time_diff = 0
 
 for size in sizes:
