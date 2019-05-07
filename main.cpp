@@ -13,10 +13,10 @@
 
 using namespace std::chrono;
 
-double xU(double x) { return 0*x; }
-double xL(double x) { return sin(x);}
-double yU(double y) { return 0*y;}
-double yL(double y) { return sin(y);}
+double xU(double x) { return x*0.0; }
+double xL(double x) { return sin(x); }
+double yU(double y) { return y*0.0; }
+double yL(double y) { return sin(y); }
 
 int main(int argc, char** argv)
 {
@@ -41,9 +41,9 @@ int main(int argc, char** argv)
   {
     for(int x = 0; x < size+1; x++)
     {
-      if(y == 0 && x != size) out << sin(3.14159/(size)*x) << " ";
-      else if(y == 0 && x == size) out << sin(3.14159/(size)*x);
-      else if(x == 0) out << sin(3.14159/(size)*y) << " ";
+      if(y == 0 && x != size) out << sin(M_PI/(size)*x) << " ";
+      else if(y == 0 && x == size) out << sin(M_PI/(size)*x);
+      else if(x == 0) out << sin(M_PI/(size)*y) << " ";
       else if(x == size) out << 0.0;
       else if(y == size) out << 0.0 << " ";
       else out << v[(y-1)*(size-1)+(x-1)] << " ";
