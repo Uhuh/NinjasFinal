@@ -21,6 +21,6 @@ Z = z.reshape(X.shape)
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
-ax.plot_surface(X,Y,Z,rstride=1,cstride=1,cmap='afmhot')
+ax.plot_surface(X,Y,Z,rstride=1,cstride=1,cmap='hsv')
 
 plt.show()
