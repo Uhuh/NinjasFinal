@@ -25,12 +25,6 @@ SymMatrix<T>::SymMatrix(const int r, const int c)
 template<typename T>
 T SymMatrix<T>::operator()(const int col, const int row) const
 {
-  if(col < 0 || row < 0 || col >= m_cols || row >= m_rows)
-  {
-    std::cerr << "Tried to access out of bounds; Sym" << std::endl;
-    throw std::out_of_range("CANNOT ACCESS OUT OF BOUNDS; Sym");
-  }
-
   if(row > col)
   {
     return ptr_to_data[row][col];
@@ -42,12 +36,6 @@ T SymMatrix<T>::operator()(const int col, const int row) const
 template<typename T>
 T& SymMatrix<T>::operator()(const int col, const int row)
 {
-  if(col < 0 || row < 0 || col >= m_cols || row >= m_rows)
-  {
-    std::cerr << "Tried to access out of bounds; Sym" << std::endl;
-    throw std::out_of_range("CANNOT ACCESS OUT OF BOUNDS; Sym");
-  }
-
   if(row > col)
   {
     return ptr_to_data[row][col];

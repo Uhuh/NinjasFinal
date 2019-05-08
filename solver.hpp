@@ -175,29 +175,12 @@ vector<T> GaussianSolver<T>::operator()(const SymMatrix<T>& source,
   {
     for(int i = 0; i <= k; i++)
     {
-      if(k != i)
+      double sum = 0;
+      for(int j = 0; j < i; j++)
       {
-        if(temp(i, i) == 0)
-        {
-          std::cerr << "Trying to divide by zero" << std::endl;
-          throw std::out_of_range("TRIED TO DIVIDE BY 0");
-        }
-        double sum = 0;
-        for(int j = 0; j < i; j++)
-        {
-          sum += temp(j, i) * temp(j, k);
-        }
-        temp(i, k) = (source(i, k) - sum) / temp(i, i);
+        sum += temp(j, i) * temp(j, k);
       }
-      else
-      {
-        double sum = 0;
-        for(int j = 0; j < k; j++)
-        {
-          sum += temp(j, k) * temp(j, k);
-        }
-        temp(k, k) = sqrt(source(k, k) - sum);
-      }
+      temp(i, k) = (i == k) ? sqrt(source(k, k) - sum) : (source(i, k) - sum) / temp(i, i);
     }
   }
   

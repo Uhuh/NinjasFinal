@@ -155,11 +155,6 @@ vector<T> operator*(const LowerTriangle<T>& lhs, const vector<T>& rhs)
 template<typename T>
 T LowerTriangle<T>::operator()(const int col, const int row) const
 {
-  if(col < 0 || col >= m_cols || row < 0 || row >= m_rows)
-  {
-    std::cerr << "Out of bounds () call" << std::endl;
-  }
-
   if(col > row)
   {
     return 0;
@@ -171,11 +166,6 @@ T LowerTriangle<T>::operator()(const int col, const int row) const
 template<typename T>
 T& LowerTriangle<T>::operator()(const int col, const int row)
 {
-  if(col < 0 || col >= m_cols || row < 0 || row >= m_rows)
-  {
-    std::cerr << "Out of bounds () call" << std::endl;
-  }
-
   if(col > row)
   {
     std::cerr << "Tried to make an lower not an lower matrix" << std::endl;
