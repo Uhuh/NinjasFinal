@@ -19,7 +19,7 @@ PartialDiff<T>::PartialDiff(const T lower, const T upper)
 template <typename T>
 vector<T> PartialDiff<T>::operator()(FunctPtr xUpper, FunctPtr xLower, 
                     FunctPtr yUpper, FunctPtr yLower, 
-                    const int partitions)
+                    const int partitions, const bool choleskySolver)
 {
   if(xUpper == NULL || xLower == NULL || yUpper == NULL || yLower == NULL)
   {
@@ -117,5 +117,10 @@ vector<T> PartialDiff<T>::operator()(FunctPtr xUpper, FunctPtr xLower,
 
   GaussianSolver<double> solver;
 
-  return solver(AMatrix.toSym(), BVec);
+  if(choleskySolver)
+  {
+    return solver(AMatrix.toSym(), BVec);
+  }
+
+  return solver(AMatrix, BVec);
 }

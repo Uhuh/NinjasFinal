@@ -35,11 +35,13 @@ int main(int argc, char** argv)
   }
 
   int size = std::stoi(argv[1]);
+  bool cholesky = std::stoi(argv[2]);
   std::ofstream out("output.txt");
 
   //Gets Data to "output.txt"
-  vector<double> v = PDE(xUp, xLow, yUp, yLow, size);
-
+  vector<double> v = PDE(xUp, xLow, yUp, yLow, size, cholesky);
+  
+  std::cout << v << std::endl;
   for(int y = 0; y < size+1; y++)
   {
     for(int x = 0; x < size+1; x++)

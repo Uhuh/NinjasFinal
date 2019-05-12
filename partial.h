@@ -17,7 +17,7 @@ class PartialDiff
     PartialDiff(const T lower, const T upper);
     vector<T> operator()(FunctPtr UpperBound = NULL, FunctPtr LowerBound = NULL, 
           FunctPtr LeftBound = NULL, FunctPtr RightBound = NULL, 
-          const int partitions = 0);
+          const int partitions = 0, const bool choleskySolver = 1);
 
 };
 
