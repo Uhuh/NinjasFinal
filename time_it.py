@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 times1=[]
 times2=[]
-sizes=[5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100]
+sizes=[5,10,15,20,25,30,35,40,45,50]#,55,60,65,70,75,80,85,90,95,100]
 time_diff = 0
 
 for size in sizes:
@@ -33,7 +33,7 @@ plt.title('Runtimes using LUFactorization')
 plt.xlabel( 'N')
 plt.ylabel( 'Time Secs')
 plt.legend('cholesky')
-plt.savefig('./data/lu_plot.png')
+plt.savefig('lu_plot.png')
 plt.clf()
 
 # df2 = pd.DataFrame(list(zip(sizes,times2)), columns=['N','times'])

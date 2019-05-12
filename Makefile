@@ -30,8 +30,9 @@ main.o: ./vector.h ./vector.hpp ./matrix.h  \
 				./solver.h ./solver.hpp ./main.cpp ./upper.hpp \
 				./upper.h ./lower.h ./lower.hpp
 
+#alg=0 for gauss, 1 for choleski
 plot: driver
-	-@python3 plotter.py $(size)
+	-@python3 plotter.py $(size) $(alg)
 
 time: driver
 	-@python3 time_it.py
