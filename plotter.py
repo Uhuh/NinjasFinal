@@ -10,7 +10,7 @@ if len(sys.argv) != 2:
 
 size = int(sys.argv[1])
 
-os.system('./driver {}'.format(size))
+os.system('./driver {} {}'.format(size, 1))
 with open('output.txt', 'r') as f:
     matrix = [[float(num) for num in line.split(' ')] for line in f]
 

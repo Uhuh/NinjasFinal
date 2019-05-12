@@ -22,7 +22,7 @@ int main(int argc, char** argv)
 {
   double lowerb = 0;
   double upperb = M_PI;
-  std::cout << std::setprecision(8) << std::fixed;
+  std::cout << std::setprecision(2) << std::fixed;
   PartialDiff<double> PDE(lowerb, upperb);
   FunctPtr xUp = xU;
   FunctPtr xLow = xL;
@@ -41,7 +41,6 @@ int main(int argc, char** argv)
   //Gets Data to "output.txt"
   vector<double> v = PDE(xUp, xLow, yUp, yLow, size, cholesky);
   
-  std::cout << v << std::endl;
   for(int y = 0; y < size+1; y++)
   {
     for(int x = 0; x < size+1; x++)
