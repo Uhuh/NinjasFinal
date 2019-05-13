@@ -6,6 +6,7 @@
 #include "vector.h"
 
 using FunctPtr = double(*)(double);
+using ForcedFunct = double(*)(double, double);
 
 template <class T>
 class PartialDiff
@@ -16,7 +17,7 @@ class PartialDiff
   public:
     PartialDiff(const T lower, const T upper);
     vector<T> operator()(FunctPtr UpperBound = NULL, FunctPtr LowerBound = NULL, 
-          FunctPtr LeftBound = NULL, FunctPtr RightBound = NULL, 
+          FunctPtr LeftBound = NULL, FunctPtr RightBound = NULL,  ForcedFunct f = NULL,
           const int partitions = 0, const bool choleskySolver = 1);
 
 };

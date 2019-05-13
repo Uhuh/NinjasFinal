@@ -17,6 +17,7 @@ double xU(double y) { return y*0.0; }
 double xL(double y) { return sin(y); }
 double yU(double x) { return x*0.0; }
 double yL(double x) { return sin(x); }
+double forced(double x, double y) { return x*y*0; }
 
 int main(int argc, char** argv)
 {
@@ -39,7 +40,7 @@ int main(int argc, char** argv)
   std::ofstream out("output.txt");
 
   //Gets Data to "output.txt"
-  vector<double> v = PDE(xUp, xLow, yUp, yLow, size, cholesky);
+  vector<double> v = PDE(xUp, xLow, yUp, yLow, forced, size, cholesky);
   
   for(int y = 0; y < size+1; y++)
   {

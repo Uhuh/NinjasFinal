@@ -18,7 +18,7 @@ PartialDiff<T>::PartialDiff(const T lower, const T upper)
 
 template <typename T>
 vector<T> PartialDiff<T>::operator()(FunctPtr xUpper, FunctPtr xLower, 
-                    FunctPtr yUpper, FunctPtr yLower, 
+                    FunctPtr yUpper, FunctPtr yLower, ForcedFunct Forced,
                     const int partitions, const bool choleskySolver)
 {
   if(xUpper == NULL || xLower == NULL || yUpper == NULL || yLower == NULL)
@@ -36,6 +36,7 @@ vector<T> PartialDiff<T>::operator()(FunctPtr xUpper, FunctPtr xLower,
   DenseMatrix<double> AMatrix(SIZE, SIZE);
   vector<Point> XVec(SIZE);
   vector<double> BVec(SIZE);
+  vector<double> FVec(SIZE);
 
   // All the x and y shifted points. "Main" is just u(xj, yk)
   vector<Point> notMain(4);
@@ -81,6 +82,7 @@ vector<T> PartialDiff<T>::operator()(FunctPtr xUpper, FunctPtr xLower,
       {
         for(int j = 0; j < SIZE; j++)
         {
+          FVec[i] += (*Forced)(notMain[i].m_x, notMain[i].m_y);
           if(notMain[i] == XVec[j])
           {
             AMatrix[j][row] = -0.25;
@@ -114,7 +116,9 @@ vector<T> PartialDiff<T>::operator()(FunctPtr xUpper, FunctPtr xLower,
   }
 
   BVec = BVec * 0.25;
-
+  FVec = FVec * ((partitions * partitions)/4.0);
+  BVec = BVec + FVec;
+  
   GaussianSolver<double> solver;
 
   if(choleskySolver)
