@@ -1,3 +1,13 @@
+/**
+  * @file   partial.h
+  * @author Dylan Warren, Section A
+  * @brief  The partial class is a partial matrix.
+*/
+/**
+  * @class  PartialDiff
+  * @brief  PartialDiff Allows us to solve Poisson's equation
+*/
+
 #ifndef PARTIAL_H
 #define PARTIAL_H
 
@@ -15,10 +25,34 @@ class PartialDiff
     T upperBound;
     T lowerBound;
   public:
+    /**
+      * @brief   Confirms LowerTriangle row and col are proper values
+                  then initialises ptr_to_vector
+      * @pre     upper must be greater than lower
+      * @post    Create a PDE with the bounds set
+      * @param   lower - Lower bound 
+      * @param   upper - Upper bound
+      * @return  None
+      * @throw   If upper is lower than lower
+    */
     PartialDiff(const T lower, const T upper);
-    vector<T> operator()(FunctPtr UpperBound = NULL, FunctPtr LowerBound = NULL, 
-          FunctPtr LeftBound = NULL, FunctPtr RightBound = NULL,  ForcedFunct f = NULL,
-          const int partitions = 0, const bool choleskySolver = 1);
+    /**
+      * @brief   Generates the X vector for the correlating mesh interior points
+      * @pre     All function pointers must be passed in.
+      * @post    None
+      * @param   UpperBound - This is when x is equal to the upper bound; u(UPPER, y)
+      * @param   LowerBound - When x is equal to the lower bound; u(LOWER, y)
+      * @param   LeftBound - When y is equal to upper bound; u(x, UPPER)
+      * @param   RightBound - When y is equal to lower bound; u(x, LOWER)
+      * @param   Forced - The forced function; f(x, y)
+      * @param   partitions - Our N.
+      * @param   choleskySolver - Determines if choleski or if Gaussian is used.
+      * @return  The real x vector values
+      * @throw   If none of the function ptrs are passed in.
+    */
+    vector<T> operator()(const FunctPtr UpperBound = NULL, const FunctPtr LowerBound = NULL, 
+          const FunctPtr LeftBound = NULL, const FunctPtr RightBound = NULL,  const ForcedFunct Forced = NULL,
+          const int partitions = 0, const bool choleskySolver = 1) const;
 
 };
 

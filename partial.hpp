@@ -17,9 +17,9 @@ PartialDiff<T>::PartialDiff(const T lower, const T upper)
 }
 
 template <typename T>
-vector<T> PartialDiff<T>::operator()(FunctPtr xUpper, FunctPtr xLower, 
-                    FunctPtr yUpper, FunctPtr yLower, ForcedFunct Forced,
-                    const int partitions, const bool choleskySolver)
+vector<T> PartialDiff<T>::operator()(const FunctPtr xUpper, const FunctPtr xLower, 
+                    const FunctPtr yUpper, const FunctPtr yLower, const ForcedFunct Forced,
+                    const int partitions, const bool choleskySolver) const 
 {
   if(xUpper == NULL || xLower == NULL || yUpper == NULL || yLower == NULL)
   {
