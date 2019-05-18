@@ -6,7 +6,7 @@ import numpy as np
 
 size = int(sys.argv[1])
 
-os.system('./a.out {}'.format(size))
+os.system('./a.out {} {}'.format(size, 1))
 with open('output2.txt', 'r') as f:
     matrix = [[float(num) for num in line.split(' ')] for line in f]
 

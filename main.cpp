@@ -1,6 +1,6 @@
 /**
   * @file   main.cpp
-  * @author Dylan Warren, Section A
+  * @author Dylan Warren, Oscar Lewzcuk, Section A
   * @brief  Acting as the driver to test the matrix class
 */
 #include "partial.h"
@@ -23,7 +23,7 @@ int main(int argc, char** argv)
 {
   double lowerb = 0;
   double upperb = M_PI;
-  std::cout << std::setprecision(2) << std::fixed;
+  std::cout << std::setprecision(8) << std::fixed;
   PartialDiff<double> PDE(lowerb, upperb);
   FunctPtr xUp = xU;
   FunctPtr xLow = xL;

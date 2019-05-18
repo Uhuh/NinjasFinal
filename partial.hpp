@@ -1,3 +1,9 @@
+/**
+  * @file   partial.hpp
+  * @author Dylan Warren, Oscar Lewzcuk, Section A
+  * @brief  Defines PartialDiff functions
+*/
+
 #include <exception>
 #include <iostream>
 #include "partial.h"

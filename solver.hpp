@@ -171,19 +171,21 @@ vector<T> GaussianSolver<T>::operator()(const SymMatrix<T>& source,
 
   LowerTriangle<T> temp(source.getRow(), source.getCol());
 
+  const double NSIZE = sqrt(source.getRow()) + 2;
+
   for(int k = 0; k < source.getRow(); k++)
   {
     for(int i = 0; i <= k; i++)
     {
       double sum = 0;
-      for(int j = 0; j < i; j++)
+      for(int j = static_cast<int>(i-NSIZE >= 0 ? i-NSIZE : 0); j < i; j++)
       {
         sum += temp(j, i) * temp(j, k);
       }
       temp(i, k) = (i == k) ? sqrt(source(k, k) - sum) : (source(i, k) - sum) / temp(i, i);
     }
   }
-  
+
   return this->operator()(transpose(temp), this->operator()(temp, B));
 }
 

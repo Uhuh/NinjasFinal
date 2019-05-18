@@ -1,6 +1,6 @@
 /**
   * @file   partial.h
-  * @author Dylan Warren, Section A
+  * @author Dylan Warren, Oscar Lewzcuk, Section A
   * @brief  The partial class is a partial matrix.
 */
 /**
